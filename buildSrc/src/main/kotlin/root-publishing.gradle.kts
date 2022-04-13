@@ -19,11 +19,11 @@ allprojects {
 
 afterEvaluate {
     tasks {
-        val publishToModrinth by registering { group = modName }
-        val publishToCurseforge by registering { group = modName }
+        val publishToModrinth by registering { group = "mod" }
+        val publishToCurseforge by registering { group = "mod" }
 
         val updateApiVersion by registering {
-            group = modName
+            group = "mod"
             onlyIf { hasProperty("xander-api.username") && hasProperty("xander-api.password") }
 
             val gson = Gson()
@@ -51,6 +51,7 @@ afterEvaluate {
 
             val loaders = listOf("forge", "fabric")
             val minecraftVersion: String by rootProject
+            val modName: String by rootProject
             for (loader in loaders) {
                 val newVersionRequest = HttpRequest.newBuilder(URI.create("https://api.isxander.dev/updater/new/$modName?loader=$loader&minecraft=$minecraftVersion&version=${project.version}")).apply {
                     GET()
@@ -80,7 +81,7 @@ afterEvaluate {
         }
 
         register("publishMod") {
-            group = modName
+            group = "mod"
 
             dependsOn("clean")
 

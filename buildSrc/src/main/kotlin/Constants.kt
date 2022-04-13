@@ -1,1 +1,0 @@
-val modName = "mod"

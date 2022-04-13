@@ -4,8 +4,6 @@ plugins {
     id("org.quiltmc.quilt-mappings-on-loom")
 }
 
-
-
 dependencies {
     val minecraftVersion: String by rootProject
     val mappingsType: String by rootProject
